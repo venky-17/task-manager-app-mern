@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const PORT = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
 
 const mongoURL = process.env.MONGO_URL;
 
@@ -17,6 +17,22 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(router);
 app.use(UserRouter);
+
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://tasks-manager-mern.netlify.app/"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+  );
+  next();
+});
 
 app.use((err, req, res, next) => {
   console.error("Error:", err.message);
@@ -38,7 +54,7 @@ connection.on("error", (err) => {
 app.listen(PORT, () =>
   console.log(
     "running on port 3000",
-    process.env.JWT_SECRET_KEY,
+
     process.env.MONGO_URL
   )
 );
