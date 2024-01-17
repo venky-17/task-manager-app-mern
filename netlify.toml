@@ -1,4 +1,6 @@
+# netlify.toml
+
 [build]
-  base = "frontend/task-manager"
-  command = "npm run build"
+  base = ""
+  command = "cd frontend/task-manager && npm run build"
   publish = "frontend/task-manager/build"
