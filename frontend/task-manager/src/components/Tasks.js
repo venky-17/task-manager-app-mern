@@ -11,7 +11,7 @@ const Tasks = () => {
   const [editingTaskId, setEditingTaskId] = useState(null);
 
   const navigate = useNavigate();
-  const url = "http://localhost:3000";
+  const url = "https://task-manager-efrr.onrender.com";
   const jwtToken = localStorage.getItem("token");
 
   const getTasks = async () => {

@@ -10,7 +10,7 @@ const SignUp = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:3000/signup";
+    const url = "https://task-manager-efrr.onrender.com/signup";
 
     try {
       const response = await axios.post(url, {
