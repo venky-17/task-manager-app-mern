@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../components/css/Task.css";
@@ -14,7 +14,7 @@ const Tasks = () => {
   const url = "https://task-manager-efrr.onrender.com";
   const jwtToken = localStorage.getItem("token");
 
-  const getTasks = async () => {
+  const getTasks = useCallback(async () => {
     try {
       const response = await axios.get(`${url}/task`, {
         headers: {
@@ -26,7 +26,7 @@ const Tasks = () => {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }, [jwtToken]);
 
   const addTask = async (e) => {
     e.preventDefault();
@@ -108,7 +108,7 @@ const Tasks = () => {
 
   useEffect(() => {
     getTasks();
-  }, []);
+  }, [getTasks]);
 
   return (
     <>
