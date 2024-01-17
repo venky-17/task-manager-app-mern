@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+
+form {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+}
+.mainForm {
+  max-height: 100vh;
+  margin-top: 300px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 5px;
+  font-family: "Nanum Myeongjo", serif;
+}
+
+input {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 8px;
+  width: auto;
+  font-family: "Nanum Myeongjo", serif;
+  width: 450px;
+  border: none;
+  outline: none;
+}
+
+.loginBtn {
+  padding: 10px 20px;
+  border: none;
+  background-color: #89ffc7;
+  border-radius: 8px;
+  font-size: 20px;
+  font-family: "Nanum Myeongjo", serif;
+  width: 450px;
+  cursor: pointer;
+}
+@media screen and (max-width: 767px) {
+  .mainForm {
+    max-height: 100vh;
+    margin-top: 250px;
+    max-width: 100%;
+  }
+
+  input {
+    width: 300px;
+  }
+  .loginBtn {
+    width: 300px;
+  }
+}
