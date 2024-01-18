@@ -57,7 +57,7 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              placeholder="min 7 characters"
+              placeholder="Enter Password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

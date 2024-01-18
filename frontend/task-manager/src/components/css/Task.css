@@ -113,23 +113,8 @@
   border-radius: 6px;
 }
 @media screen and (max-width: 767px) {
-  .taskList {
-    width: auto;
-    margin: auto;
-
-    margin: 5px auto;
-    width: 80%;
-    gap: 10px;
-  }
-  .titleLabel {
-    word-wrap: break-word;
-  }
-}
-
-@media screen and (max-width: 767px) {
   .logoutBtn {
     padding: 5px 10px;
-
     border-radius: 6px;
     font-size: 14px;
   }
@@ -148,14 +133,7 @@
     cursor: pointer;
     width: 300px;
   }
-  .taskItem {
-    font-size: 18px;
 
-    padding: 6px 12px;
-
-    border-radius: 8px;
-    margin-top: 10px;
-  }
   .taskHeadline {
     margin-top: 20px;
     font-size: 24px;
@@ -164,9 +142,48 @@
     padding: 3px 6px;
     font-size: 12px;
   }
+
+  .taskList {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 10px;
+    gap: 10px;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .taskItem {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 10px 20px;
+    background-color: white;
+    outline: 1px red solid;
+    border-radius: 14px;
+    margin-top: 10px;
+    width: 200px !important;
+    overflow: hidden;
+  }
+
+  .taskTitle,
   .taskDesc {
-    color: #2a2c52;
-    font-family: "Instrument Serif", serif;
-    font-size: 16px;
+    max-width: 90%;
+  }
+
+  .taskOperations {
+    width: 250px;
+  }
+
+  .editingEnabled {
+    padding: 4px 6px;
+    font-size: 14px;
+    border-radius: 8px;
+    width: auto;
+    font-family: "Nanum Myeongjo", serif;
+    border: 1px solid black;
+    margin-top: 5px;
   }
 }
