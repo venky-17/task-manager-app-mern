@@ -18,14 +18,16 @@ router.post("/create", auth, async (req, res) => {
   const userId = req.user._id;
 
   if (!title || !desc) {
-    res.status(400).json({ message: "pls enter both title n desc" });
+    return res.status(400).json({
+      message: "Please enter both title and description.",
+    });
   }
   try {
     const newTask = new Task({ title, desc, creator: userId });
     await newTask.save();
     res.status(200).json({ success: "task created succesffuly" });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 });
 
@@ -40,7 +42,7 @@ router.get("/task", auth, async (req, res) => {
     const userTasks = await Task.find({ creator: userId });
     res.status(200).json(userTasks);
   } catch (error) {
-    res.status(400).send(error.message);
+    return res.status(400).send(error.message);
   }
 });
 
@@ -64,7 +66,7 @@ router.delete("/delete/:id", auth, async (req, res) => {
     await Task.findOneAndDelete({ _id: taskID });
     res.status(200).json({ success: "Task deleted successfully" });
   } catch (error) {
-    res.status(400).send(error.message);
+    return res.status(400).send(error.message);
   }
 });
 
@@ -89,7 +91,7 @@ router.patch("/update/:id", auth, async (req, res) => {
     await taskToUpdate.save();
     res.status(200).send(taskToUpdate);
   } catch (error) {
-    res.status(500).send(error.message);
+    return res.status(500).send(error.message);
   }
 });
 

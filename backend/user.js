@@ -32,7 +32,7 @@ router.post("/signup", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    return res.status(500).json({
       message: " Internal server error Maybe Enter Valid Email and Password",
     });
   }
@@ -63,7 +63,7 @@ router.post("/login", async (req, res) => {
           expiresIn: "1h",
         }
       );
-      return res.status(200).send({ token, message: "logged In" });
+      res.status(200).send({ token, message: "logged In" });
     } else {
       return res.status(401).json({ message: "Wrong Password" });
     }
