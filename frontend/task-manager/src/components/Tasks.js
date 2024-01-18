@@ -60,8 +60,14 @@ const Tasks = () => {
         console.log("task creation failed");
       }
     } catch (error) {
-      toast.error(error.message);
-      console.log(error.message);
+      if (error.response && error.response.data) {
+        toast.error(error.response.data.message);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+      console.error(error.message);
     }
   };
 

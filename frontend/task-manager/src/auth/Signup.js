@@ -34,8 +34,8 @@ const SignUp = () => {
       setAuthenticated(true);
       console.log(response.data);
     } catch (error) {
-      toast.error(error.message);
-      console.log(error.message);
+      toast.error(error.response.data.error);
+      console.log(error.response.data.error);
     }
   };
 
