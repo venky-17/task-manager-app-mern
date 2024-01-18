@@ -1,0 +1,9 @@
+# netlify.toml
+
+[build]
+  command = "cd frontend/task-manager && npm install && npm run build"
+  publish = "frontend/task-manager/build"
+  environment = { NODE_VERSION = "20.10.0" }
+
+[[plugins]]
+  package = "netlify-plugin-chromium"
