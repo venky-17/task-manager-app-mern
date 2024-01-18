@@ -10,12 +10,12 @@ router.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !password || !email) {
-      return res.status(400).json({ error: "Please provide all details" });
+      return res.status(400).json({ message: "Please provide all details" });
     }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(401).json({ error: "User already exists" });
+      return res.status(401).json({ message: "User already exists" });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, email, password: hashedPassword });
@@ -32,7 +32,9 @@ router.post("/signup", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({
+      message: " Internal server error Maybe Enter Valid Email and Password",
+    });
   }
 });
 
@@ -43,13 +45,13 @@ router.post("/login", async (req, res) => {
     if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "please provide both username and password" });
+        .json({ message: "Please Provide Both Username and Password" });
     }
 
     let user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ message: "No user found" });
+      return res.status(404).json({ message: "No User Found" });
     }
 
     const validCreds = await bcrypt.compare(password, user.password);
@@ -63,10 +65,10 @@ router.post("/login", async (req, res) => {
       );
       return res.status(200).send({ token, message: "logged In" });
     } else {
-      return res.status(401).json({ message: "wrong password" });
+      return res.status(401).json({ message: "Wrong Password" });
     }
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: "Something went wrong" });
   }
 });
 
