@@ -44,6 +44,12 @@ const Login = () => {
     }
   };
 
+  const handleTestAccount = (e) => {
+    e.preventDefault();
+    setEmail("test@gmail.com");
+    setPassword("1234567");
+  };
+
   return (
     <>
       <div className="mainForm">
@@ -77,6 +83,9 @@ const Login = () => {
                 SignUp Here
               </Link>
             </p>
+            <button className="testAccBtn" onClick={handleTestAccount}>
+              Test Account
+            </button>
           </form>
         </div>
       </div>
