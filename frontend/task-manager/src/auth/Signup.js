@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const {
@@ -29,10 +30,12 @@ const SignUp = () => {
       const token = response.data.token;
       localStorage.setItem("token", token);
       navigate("/tasks");
+      toast.success("Signup Successful");
       setAuthenticated(true);
       console.log(response.data);
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
+      console.log(error.message);
     }
   };
 
@@ -72,6 +75,11 @@ const SignUp = () => {
         <button type="submit" className="loginBtn">
           Sign Up
         </button>
+        <p className="authOption">
+          <Link to="/login" className="noUnderline">
+            SignIn Here
+          </Link>
+        </p>
       </form>
     </div>
   );

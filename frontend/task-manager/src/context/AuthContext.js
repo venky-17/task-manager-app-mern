@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState();
 
   const resultValues = {
     email,
