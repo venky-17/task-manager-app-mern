@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 import "../components/css/Task.css";
 import AuthContext from "../context/AuthContext";
 import Redirect from "./redirect";
@@ -13,7 +15,7 @@ const Tasks = () => {
   const [editedData, setEditedData] = useState({});
   const [editingTaskId, setEditingTaskId] = useState(null);
 
-  const { authenticated } = useContext(AuthContext);
+  const { authenticated, setAuthenticated } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const url = "https://task-manager-efrr.onrender.com";
@@ -29,6 +31,7 @@ const Tasks = () => {
       const data = response.data;
       setTasks(data);
     } catch (error) {
+      toast.error(error.message);
       console.log(error.message);
     }
   }, [jwtToken]);
@@ -50,13 +53,21 @@ const Tasks = () => {
       setDesc("");
       if (response.status === 200) {
         console.log("created successfully");
+        toast.success("Task Added");
         getTasks();
         navigate("/tasks");
       } else {
         console.log("task creation failed");
       }
     } catch (error) {
-      console.log(error.message);
+      if (error.response && error.response.data) {
+        toast.error(error.response.data.message);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+      console.error(error.message);
     }
   };
 
@@ -67,8 +78,20 @@ const Tasks = () => {
           Authorization: `Bearer ${jwtToken}`,
         },
       });
+      toast.success("Task Deleted", {
+        style: {
+          border: "1px solid black",
+          padding: "16px",
+          color: "red",
+        },
+        iconTheme: {
+          primary: "red",
+          secondary: "#FFFAEE",
+        },
+      });
       getTasks();
     } catch (error) {
+      toast.error(error.message);
       console.log(error.message);
     }
   };
@@ -93,10 +116,12 @@ const Tasks = () => {
           },
         }
       );
+      toast.success("Task Updated");
       setEditMode(false);
       setEditingTaskId(null);
       getTasks();
     } catch (error) {
+      toast.error(error.message);
       console.log(error.message);
     }
   };
@@ -108,16 +133,30 @@ const Tasks = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setAuthenticated(false);
+    toast.success("Logged Out", {
+      style: {
+        border: "1px solid black",
+        padding: "16px",
+        color: "red",
+      },
+      iconTheme: {
+        primary: "red",
+        secondary: "#FFFAEE",
+      },
+    });
     navigate("/login");
   };
 
   useEffect(() => {
+    console.log("after page refresh", jwtToken);
+
     getTasks();
-  }, [getTasks]);
+  }, [getTasks, jwtToken, authenticated]);
 
   return (
     <>
-      {authenticated ? (
+      {authenticated && jwtToken ? (
         <>
           <button onClick={handleLogout} className="logoutBtn">
             LOGOUT
