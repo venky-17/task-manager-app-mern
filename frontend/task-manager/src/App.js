@@ -14,11 +14,11 @@ function App() {
         <Router>
           <Routes>
             <Route path="/tasks" element={<Tasks />} />
-            <Route path="/" element={<HomePage />}>
-              {" "}
-            </Route>
-            <Route path="signup" element={<SignUp />}></Route>
-            <Route path="login" element={<Login />}></Route>
+
+            <Route path="/" element={<HomePage />} />
+
+            <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/login" element={<Login />}></Route>
           </Routes>
         </Router>
       </AuthProvider>

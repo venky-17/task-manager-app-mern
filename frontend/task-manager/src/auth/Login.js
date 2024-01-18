@@ -5,7 +5,14 @@ import { useNavigate } from "react-router-dom";
 import "../components/css/Login.css";
 
 const Login = () => {
-  const { email, setEmail, password, setPassword } = useContext(AuthContext);
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+
+    setAuthenticated,
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -21,6 +28,7 @@ const Login = () => {
       if (response.status === 200) {
         const token = response.data.token;
         localStorage.setItem("token", token);
+        setAuthenticated(true);
         navigate("/tasks");
         console.log(response.data.token);
       } else {

@@ -4,8 +4,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const { email, setEmail, username, setUsername, password, setPassword } =
-    useContext(AuthContext);
+  const {
+    email,
+    setEmail,
+    username,
+    setUsername,
+    password,
+    setPassword,
+
+    setAuthenticated,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
@@ -18,7 +26,10 @@ const SignUp = () => {
         email,
         password,
       });
+      const token = response.data.token;
+      localStorage.setItem("token", token);
       navigate("/tasks");
+      setAuthenticated(true);
       console.log(response.data);
     } catch (error) {
       console.log(error);
