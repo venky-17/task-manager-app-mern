@@ -141,6 +141,7 @@ const Tasks = () => {
           </form>
 
           <h2 className="taskHeadline">Your Tasks</h2>
+
           <ul className="taskList">
             {tasks !== null &&
               tasks.map((task) => (
@@ -163,7 +164,8 @@ const Tasks = () => {
                   ) : (
                     <span className="taskTitle">
                       {" "}
-                      <span className="titleLabel">Title :</span> {task.title}
+                      <span className="titleLabel">Title :</span>{" "}
+                      <span className="taskContent">{task.title}</span>
                     </span>
                   )}
 
@@ -184,7 +186,8 @@ const Tasks = () => {
                     />
                   ) : (
                     <span className="taskDesc">
-                      <span className="titleLabel">Desc :</span> {task.desc}
+                      <span className="titleLabel">Desc :</span>{" "}
+                      <span className="taskContent">{task.desc}</span>
                     </span>
                   )}
                   <div className="taskOperations">
