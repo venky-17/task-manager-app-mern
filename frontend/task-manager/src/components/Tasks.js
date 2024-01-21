@@ -168,9 +168,11 @@ const Tasks = () => {
               onChange={(e) => setNewTask(e.target.value)}
               value={newTask}
             />
-            <input
+            <textarea
               type="text"
               placeholder="Enter Description"
+              rows="6"
+              cols="50"
               onChange={(e) => setDesc(e.target.value)}
               value={desc}
             />

@@ -13,6 +13,14 @@
   font-weight: 600;
   cursor: pointer;
 }
+textarea {
+  font-size: 20px;
+  font-family: "Nanum Myeongjo", serif;
+  padding: 6px 12px;
+  outline: none;
+
+  border-radius: 8px;
+}
 .taskList {
   color: white;
   list-style: none;
@@ -103,15 +111,16 @@
   padding: 4px 8px;
   text-transform: uppercase;
   font-family: "Domine", serif;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
   background-color: #00e055;
   font-weight: 200;
   cursor: pointer;
   opacity: 0.9;
-  margin: 0 6px;
+  margin: 6px 6px;
   border-radius: 6px;
 }
+
 @media screen and (max-width: 767px) {
   .logoutBtn {
     padding: 5px 10px;
@@ -140,7 +149,6 @@
   }
   .specialBtns {
     padding: 3px 6px;
-    font-size: 12px;
   }
 
   .taskList {
@@ -175,13 +183,9 @@
     max-width: 90%;
   }
 
-  .taskOperations {
-    width: 250px;
-  }
-
   .editingEnabled {
     padding: 4px 6px;
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 8px;
     width: auto;
     font-family: "Nanum Myeongjo", serif;
@@ -193,5 +197,13 @@
     text-transform: uppercase;
     font-family: "Domine", serif;
     font-size: 16px;
+  }
+  textarea {
+    font-size: 20px;
+    font-family: "Nanum Myeongjo", serif;
+    padding: 6px 12px;
+    outline: none;
+    max-width: 350px;
+    border-radius: 8px;
   }
 }

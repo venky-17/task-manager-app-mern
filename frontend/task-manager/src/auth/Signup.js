@@ -34,9 +34,16 @@ const SignUp = () => {
       setAuthenticated(true);
       console.log(response.data);
     } catch (error) {
-      toast.error(error.response.data.error);
-      console.log(error.response.data.error);
+      toast.error(error?.response?.data?.error);
+      console.log(error?.response?.data?.error);
     }
+  };
+
+  const handleTestAccount = (e) => {
+    e.preventDefault();
+    navigate("/login");
+    setEmail("test@gmail.com");
+    setPassword("1234567");
   };
 
   return (
@@ -80,6 +87,9 @@ const SignUp = () => {
             SignIn Here
           </Link>
         </p>
+        <button className="testAccBtn" onClick={handleTestAccount}>
+          Test Account
+        </button>
       </form>
     </div>
   );

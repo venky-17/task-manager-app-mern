@@ -10,7 +10,6 @@ form {
 }
 .mainForm {
   max-height: 100vh;
-  margin-top: 300px;
 }
 .form-group {
   display: flex;
@@ -57,10 +56,23 @@ input {
   text-decoration: none;
   color: inherit;
 }
+
+.testAccBtn {
+  padding: 6px 12px;
+
+  border: none;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  font-family: "Nanum Myeongjo", serif;
+
+  cursor: pointer;
+}
+
 @media screen and (max-width: 767px) {
   .mainForm {
     max-height: 100vh;
-    margin-top: 250px;
+    margin-top: 200px;
     max-width: 100%;
   }
 
